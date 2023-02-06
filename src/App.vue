@@ -2,12 +2,13 @@
   import AppHeader from "./components/AppHeader/AppHeader.vue"
   import AppMain from "./components/AppMain/AppMain.vue"
   import AppFooter from "./components/AppFooter/AppFooter.vue"
+  import axios from 'axios'
  
   export default { 
 
   data () {
       return { 
-          
+          monsters: [{}],
       }
 
   },
@@ -20,7 +21,9 @@
     
     axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Blue-Eyes')
     .then((response) => {
-      console.log (response)
+      console.log(response.data)
+      this.monsters = response.data.data
+      console.log(this.monsters)
     }
 
   )}
@@ -30,7 +33,9 @@
 
 <template>
   <AppHeader />
-  <AppMain />
+
+  <AppMain :monsterList="monsters" />
+
   <AppFooter />
 </template>
 

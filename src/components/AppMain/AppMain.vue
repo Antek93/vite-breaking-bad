@@ -1,6 +1,12 @@
 <script>
 export default {
     name: 'AppMain',
+    props: {
+        monsterList: {
+            type: Array,
+            default: []
+        }
+    },
     data () {
         return {
             msg: 'Ciao',
@@ -17,7 +23,7 @@ export default {
         <div class="container-fluid">
 
             <!-- Select options -->
-            <div class="py-4">
+            <div class="select py-4">
                 <select name="typeList" id="typeList">
                     <option value="Alien">Alien</option>
                     <option value="Monster">Monster</option>
@@ -31,25 +37,25 @@ export default {
                 <!-- Barra nera con numeri di elementi trovati nell'API -->
                <div class="cardsNumber d-flex justify-content-start align-items-center ps-2 mx-auto">
                     <div>
-                        Found n* cards
+                     Found {{ monsterList.length }} cards
                     </div>
                </div>
 
                <!-- Contenitore delle cards -->
                <div class="cardsContainer mx-auto d-flex justify-content-between flex-wrap">
                 <!-- Struttura della carta specifica:  -->
-                    <div v-for="n in 32" class="carta mb-3">
+                    <div v-for="monster in monsterList" class="carta mb-3">
                         <!-- Immagine carta  -->
                         <div class="img-box">
-                            <img src="https://static.fandomspot.com/images/10/21084/18-kuriboh-card-yugioh.jpg" alt="">
+                            <img src="" alt="">
                         </div>
                         <!-- Nome carta + specie -->
                         <div class="text-box d-flex-column text-center py-2">
-                            <div class="py-4">
-                                Nome carta
+                            <div class="py-4 text-light text-xl-center fw-bold">
+                                {{ monster.name }}
                             </div>
                             <div class="psy-2">
-                                Specie di carta
+                                {{ monster.type }}
                             </div>
                         </div>
                     </div>
@@ -84,7 +90,7 @@ main {
     width: 90%;
     .carta {
         width: calc((100% / 5) - 20px);
-        background-color: red;
+        background-color: #d88c3c;
         height: 450px;
     }
 }
@@ -101,5 +107,9 @@ main {
 .text-box {
     width: 100%;
     height: 30%;
+}
+
+.select {
+    margin-left: 5.9%;
 }
 </style>
