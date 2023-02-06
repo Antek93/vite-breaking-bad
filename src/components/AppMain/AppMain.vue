@@ -46,8 +46,8 @@ export default {
                 <!-- Struttura della carta specifica:  -->
                     <div v-for="monster in monsterList" class="carta mb-3">
                         <!-- Immagine carta  -->
-                        <div class="img-box">
-                            <img src="" alt="">
+                        <div v-for="element in monster.card_images.slice(0,1)" class="img-box">
+                            <img :src="element.image_url" alt="">
                         </div>
                         <!-- Nome carta + specie -->
                         <div class="text-box d-flex-column text-center py-2">
