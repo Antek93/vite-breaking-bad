@@ -67,49 +67,5 @@ export default {
 </template>
 
 <style lang="scss">
-main {
-    > div {
-        background-color: #d88c3c;
-    }
-}
-#typeList {
-    border: none;
-    text-decoration: none;
-}
-
-.cardsNumber {
-    width: 90%;
-    height: 50px;
-    background-color: black;
-    > div {
-        color: white;
-    }
-}
-
-.cardsContainer {
-    width: 90%;
-    .carta {
-        width: calc((100% / 5) - 20px);
-        background-color: #d88c3c;
-        height: 450px;
-    }
-}
-
-.img-box {
-    width: 100%;
-    height: 70%;
-    > img {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.text-box {
-    width: 100%;
-    height: 30%;
-}
-
-.select {
-    margin-left: 5.9%;
-}
+@import '../../styles/partials/MainAttributes/mainAttributes.scss'
 </style>
