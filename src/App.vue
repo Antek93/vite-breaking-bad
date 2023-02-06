@@ -15,7 +15,15 @@
     AppHeader,
     AppMain,
     AppFooter,
-  }
+  },
+  created() {
+    
+    axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Blue-Eyes')
+    .then((response) => {
+      console.log (response)
+    }
+
+  )}
   }
 </script>
 
