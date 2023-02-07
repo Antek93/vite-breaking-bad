@@ -1,18 +1,37 @@
 <script>
+import axios from 'axios';
+
 export default {
     name: 'AppMain',
     props: {
-        monsterList: {
+        archetypeList: {
             type: Array,
             default: []
-        }
+        },
+        
     },
     data () {
         return {
             msg: 'Ciao',
             count: 0,
+            archeDetails: [],
+            archetypeSelected: ''
         }
 
+    },
+    created () {
+        
+    },
+    methods: {
+        updateCardsWith(archetype) {     
+
+                axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${archetype}`)
+                  .then((response) => {
+                    this.archeDetails = response.data.data
+                    console.log('archeDetails', this.archeDetails)
+              })
+                
+        }
     }
 };
 </script>
@@ -20,20 +39,15 @@ export default {
 <template>
     <main>
         <!-- Container principale con background marrone  -->
-        <div class="container-fluid">
+        <div class="container-fluid pb-5">
 
             <!-- Select options -->
             <div class="container mx-auto">
                 <div class="select py-4 container d-flex gx-0">
-                    <select class="" name="typeList" id="typeList">
-                        <option value="Alien">Spell Card</option>
-                        <option value="Monster">Effect Monster</option>
-                        <option value="Fairy">Fusion Monster</option>
-                        <option value="Fairy">Synchro Monster</option>
-                        <option value="Fairy">Ritual Effect Monster</option>
-                        <option value="Fairy">Normal Monster</option>
-                        <option value="Fairy">Tuner Monster</option>
-                        <option value="Fairy">Trap Card</option>
+                    <select v-model="archetypeSelected" @change="updateCardsWith(archetypeSelected)" class="" name="typeList" id="typeList">
+                        <option v-for="element in archetypeList" :value="element.archetype_name">
+                            {{ element.archetype_name }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -44,16 +58,16 @@ export default {
                 <!-- Barra nera con numeri di elementi trovati nell'API -->
                <div class="cardsNumber d-flex justify-content-start align-items-center ps-2 mx-auto">
                     <div>
-                     Found {{ monsterList.length }} cards
+                     Found {{ archeDetails.length }} cards
                     </div>
                </div>
 
                <!-- Contenitore delle cards -->
                <div class="cardsContainer mx-auto d-flex justify-content-between flex-wrap">
                 <!-- Struttura della carta specifica:  -->
-                    <div v-for="monster in monsterList" class="carta mb-3">
+                    <div v-for="monster in archeDetails" class="carta mb-3">
                         <!-- Immagine carta  -->
-                        <div v-for="element in monster.card_images.slice(0,1)" class="img-box">
+                        <div v-for="element in monster.card_images" class="img-box">
                             <img :src="element.image_url" alt="">
                         </div>
                         <!-- Nome carta + specie -->

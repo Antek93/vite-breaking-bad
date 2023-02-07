@@ -6,35 +6,42 @@
  
   export default { 
 
-  data () {
-      return { 
-          monsters: [],
-      }
+    data () {
+        return { 
+            archetypeList: [],
+            
+        }
 
-  },
-  components: {
-    AppHeader,
-    AppMain,
-    AppFooter,
-  },
-  created() {
-    
-    axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype="Blue-Eyes"')
-    .then((response) => {
-      console.log(response.data)
-      this.monsters = response.data.data
-      console.log(this.monsters)
+    },
+    components: {
+      AppHeader,
+      AppMain,
+      AppFooter,
+    },
+    methods : {
+      
+    },
+    created () {
+      
+      axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')
+          .then((response) => {
+              this.archetypeList = response.data
+              
+      })
+          
     }
-
-  )}
   }
+
+  
 </script>
 
 
 <template>
   <AppHeader />
 
-  <AppMain :monsterList="monsters" />
+  <AppMain
+  :archetypeList="archetypeList"
+  />
 
   <AppFooter />
 </template>
