@@ -23,12 +23,19 @@ export default {
         <div class="container-fluid">
 
             <!-- Select options -->
-            <div class="select py-4">
-                <select name="typeList" id="typeList">
-                    <option value="Alien">Alien</option>
-                    <option value="Monster">Monster</option>
-                    <option value="Fairy">Fairy</option>
-                </select>
+            <div class="container mx-auto">
+                <div class="select py-4 container d-flex gx-0">
+                    <select class="" name="typeList" id="typeList">
+                        <option value="Alien">Spell Card</option>
+                        <option value="Monster">Effect Monster</option>
+                        <option value="Fairy">Fusion Monster</option>
+                        <option value="Fairy">Synchro Monster</option>
+                        <option value="Fairy">Ritual Effect Monster</option>
+                        <option value="Fairy">Normal Monster</option>
+                        <option value="Fairy">Tuner Monster</option>
+                        <option value="Fairy">Trap Card</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Container centrale con sfondo bianco -->
